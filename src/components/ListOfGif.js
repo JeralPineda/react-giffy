@@ -2,20 +2,35 @@ import React, { useEffect, useState } from 'react';
 
 import { getGif } from '../services/getGifs';
 import { Gif } from './Gif';
+import { Loader } from './Loader';
 
-export const ListOfGif = ({ keyword }) => {
+export const ListOfGif = ({ params }) => {
+   const { keyword } = params;
+
+   const [loading, setLoading] = useState(false);
+
    const [gifs, setGifs] = useState([]);
 
    useEffect(() => {
-      getGif({ keyword }).then((gifs) => setGifs(gifs));
+      setLoading(true);
+      getGif({ keyword }).then((gifs) => {
+         setGifs(gifs);
+         setLoading(false);
+      });
    }, [keyword]);
 
-   return gifs.map(({ url, title, id }) => (
-      <Gif
-         key={id}
-         id={id}
-         url={url} //
-         title={title}
-      />
-   ));
+   if (loading) return <Loader />;
+
+   return (
+      <>
+         {gifs.map(({ url, title, id }) => (
+            <Gif
+               key={id}
+               id={id}
+               url={url} //
+               title={title}
+            />
+         ))}
+      </>
+   );
 };
