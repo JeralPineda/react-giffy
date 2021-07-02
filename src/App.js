@@ -1,3 +1,5 @@
+import { Link, Route } from 'wouter';
+
 import { ListOfGif } from './components/ListOfGif';
 import './App.css';
 
@@ -5,7 +7,9 @@ function App() {
    return (
       <div className='App'>
          <section className='App-content'>
-            <ListOfGif keyword='panda' />
+            <Link to='/gif/panda'>Gif de Pandas</Link>
+            <Link to='/gif/honduras'>Gif de Honduras</Link>
+            <Route path='/gif/:keyword' component={ListOfGif} />
          </section>
       </div>
    );
