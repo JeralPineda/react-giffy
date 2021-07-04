@@ -1,15 +1,20 @@
 import { Link, Route } from 'wouter';
 
-import { ListOfGif } from './components/ListOfGifs/ListOfGif';
 import './App.css';
+import { Detail } from './pages/Detail';
+import { Home } from './pages/Home';
+import { SearchResults } from './pages/SearchResults';
 
 function App() {
    return (
       <div className='App'>
          <section className='App-content'>
-            <Link to='/gif/panda'>Gif de Pandas</Link>
-            <Link to='/gif/honduras'>Gif de Honduras</Link>
-            <Route path='/gif/:keyword' component={ListOfGif} />
+            <Link className='App-logo' alt='Giffy logo' to='/'>
+               <img src='./favicon.ico' alt='' />
+            </Link>
+            <Route path='/' component={Home} />
+            <Route path='/search/:keyword' component={SearchResults} />
+            <Route path='/gif/:id' component={Detail} />
          </section>
       </div>
    );
