@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { getGif } from '../services/getGifs';
-import { Gif } from './Gif';
-import { Loader } from './Loader';
+import { getGif } from '../../services/getGifs';
+import { Loader } from '../Spinner/Loader';
+import { Gif } from '../Gif/Gif';
 
 export const ListOfGif = ({ params }) => {
    const { keyword } = params;
@@ -23,14 +23,14 @@ export const ListOfGif = ({ params }) => {
 
    return (
       <>
-         {gifs.map(({ url, title, id }) => (
-            <Gif
-               key={id}
-               id={id}
-               url={url} //
-               title={title}
-            />
-         ))}
+         {
+            gifs.map(({ url, title, id }) => (
+               <Gif
+                  url={url} //
+                  title={title}
+               />
+            )) //
+         }
       </>
    );
 };

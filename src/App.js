@@ -1,6 +1,6 @@
 import { Link, Route } from 'wouter';
 
-import { ListOfGif } from './components/ListOfGif';
+import { ListOfGif } from './components/ListOfGifs/ListOfGif';
 import './App.css';
 
 function App() {
