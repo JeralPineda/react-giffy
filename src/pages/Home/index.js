@@ -22,7 +22,7 @@ export const Home = () => {
    return (
       <>
          <form onSubmit={handleSubmit}>
-            <input type='text' value={keyword} onChange={handleChange} />
+            <input placeholder='Busca una imagen' type='text' value={keyword} onChange={handleChange} />
             <button>Buscar</button>
          </form>
 
