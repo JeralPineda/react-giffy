@@ -22,25 +22,28 @@ export const Home = () => {
    return (
       <>
          <form onSubmit={handleSubmit}>
-            <input placeholder='Busca una imagen' type='text' value={keyword} onChange={handleChange} />
             <button>Buscar</button>
+            <input placeholder='Busca un gif aquí...' type='text' value={keyword} onChange={handleChange} />
          </form>
 
-         <h3 className='App-title'>Ultima búsqueda</h3>
-
-         <ListOfGifs gifs={gifs} />
-
-         <h3 className='App-title'>Los gifs mas populares</h3>
-
-         <ul>
-            {
-               popularGifs.map((popGif) => (
-                  <li key={popGif}>
-                     <Link to={`/search/${popGif}`}>Gifs de {popGif}</Link>
-                  </li>
-               )) //
-            }
-         </ul>
+         <div className='App-main'>
+            <div class='App-results'>
+               <h3 className='App-title'>Ultima búsqueda</h3>
+               <ListOfGifs gifs={gifs} />
+            </div>
+            <div class='App-category'>
+               {/* <TrendingSearches /> */}
+               <ul>
+                  {
+                     popularGifs.map((popGif) => (
+                        <li key={popGif}>
+                           <Link to={`/search/${popGif}`}>Gifs de {popGif}</Link>
+                        </li>
+                     )) //
+                  }
+               </ul>
+            </div>
+         </div>
       </>
    );
 };
