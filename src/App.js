@@ -4,6 +4,7 @@ import { Detail } from './pages/Detail';
 import { Home } from './pages/Home';
 import { SearchResults } from './pages/SearchResults';
 import StaticContext from './context/StaticContext';
+import { GifsContextProvider } from './context/GifsContext';
 import './App.css';
 
 function App() {
@@ -15,11 +16,13 @@ function App() {
                   <img src='./favicon.ico' alt='' />
                </Link>
 
-               <Route path='/' component={Home} />
+               <GifsContextProvider>
+                  <Route path='/' component={Home} />
 
-               <Route path='/search/:keyword' component={SearchResults} />
+                  <Route path='/search/:keyword' component={SearchResults} />
 
-               <Route path='/gif/:id' component={Detail} />
+                  <Route path='/gif/:id' component={Detail} />
+               </GifsContextProvider>
             </section>
          </div>
       </StaticContext.Provider>
