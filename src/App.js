@@ -12,8 +12,10 @@ function App() {
       <StaticContext.Provider value={{ name: 'Jeral', Conectado: true }}>
          <div className='App'>
             <section className='App-content'>
-               <Link className='App-logo' alt='Giffy logo' to='/'>
-                  <img src='./favicon.ico' alt='' />
+               <Link to='/'>
+                  <figure className='App-logo'>
+                     <img src='./logo.png' alt='Giffy logo' />
+                  </figure>
                </Link>
 
                <GifsContextProvider>
