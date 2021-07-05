@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { ListOfGifs } from '../../components/ListOfGifs';
-import { getGif } from '../../services/getGifs';
+import { useGifs } from '../../hooks/useGifs';
 
 const popularGifs = ['Calvin Harris', 'Marvel'];
 export const Home = () => {
    const [keyword, setKeyword] = useState('');
    const [path, pushLocation] = useLocation();
-
-   //    <----------
-   //    const [loading, setLoading] = useState(false);
-
-   const [gifs, setGifs] = useState([]);
-
-   useEffect(() => {
-      //   setLoading(true);
-      getGif({ keyword: 'Rick' }).then((gifs) => {
-         setGifs(gifs);
-         //  setLoading(false);
-      });
-   }, [keyword]);
-
-   //    ---------------->
+   const { loading, gifs } = useGifs();
 
    const handleSubmit = (e) => {
       //    navegar a otra ruta
