@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation } from 'wouter';
-import { ListOfGifs } from '../../components/ListOfGifs';
-import { TrendingSearches } from '../../components/TrendingSearches';
-import { useGifs } from '../../hooks/useGifs';
+
+import { ListOfGifs } from 'components/ListOfGifs';
+import { TrendingSearches } from 'components/TrendingSearches';
+import { useGifs } from 'hooks/useGifs';
 
 export const Home = () => {
    const [keyword, setKeyword] = useState('');
