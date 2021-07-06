@@ -1,25 +1,4 @@
-const apiKey = 'yfxK1j1iSVjkUj0lGKX2RKL8Oqyu0svM';
-
-// export const getGif = async ({ keyword = 'One Piece' } = {}) => {
-//    const apiUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${keyword}&limit=20&offset=0&rating=g&lang=en`;
-
-//    const resp = await fetch(apiUrl);
-
-//    const { data } = await resp.json();
-
-//    const gifs = data.map((img) => {
-//       const { title, id } = img;
-//       const { url } = img.images.downsized_medium;
-
-//       return {
-//          title,
-//          id,
-//          url,
-//       };
-//    });
-
-//    return gifs;
-// };
+import { API_KEY, API_URL } from './settings';
 
 const fromApiResponseToGif = (apiResponse) => {
    const { data = [] } = apiResponse;
@@ -35,7 +14,7 @@ const fromApiResponseToGif = (apiResponse) => {
 };
 
 export const getGif = ({ limit = 20, keyword = 'morty' } = {}) => {
-   const apiUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${keyword}&limit=20&offset=0&rating=g&lang=en`;
+   const apiUrl = `${API_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=20&offset=0&rating=g&lang=en`;
 
    return fetch(apiUrl)
       .then((res) => res.json())
