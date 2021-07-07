@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'wouter';
 
 import { ListOfGifs } from 'components/ListOfGifs';
-import { TrendingSearches } from 'components/TrendingSearches';
+import { LazyTrending } from 'components/TrendingSearches';
 import { useGifs } from 'hooks/useGifs';
 
 export const Home = () => {
@@ -33,7 +33,7 @@ export const Home = () => {
                <ListOfGifs gifs={gifs} />
             </div>
             <div className='App-category'>
-               <TrendingSearches />
+               <LazyTrending />
             </div>
          </div>
       </>
