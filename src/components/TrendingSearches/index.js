@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { getTrendingTerms } from 'services/getTrendingTermsService';
-import Category from 'components/Category';
 import { useNearScreen } from 'hooks/useNearScreen';
-
-const TrendingSearches = () => {
-   const [trends, setTrends] = useState([]);
-
-   useEffect(() => {
-      getTrendingTerms().then(setTrends);
-   }, []);
-
-   return <Category name='Tendencias' options={trends} />;
-};
+import { TrendingSearches } from './TrendingSearches';
 
 export const LazyTrending = () => {
    const { isNearScreen, fromRef } = useNearScreen({ distance: '200px' });
