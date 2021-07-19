@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import debounce from 'just-debounce-it';
 
 import { ListOfGifs } from 'components/ListOfGifs';
 import { Loader } from 'components/Spinner';
 import { useGifs } from 'hooks/useGifs';
 import { useNearScreen } from 'hooks/useNearScreen';
-import debounce from 'just-debounce-it';
 
 export const SearchResults = ({ params }) => {
    const { keyword } = params;
@@ -14,17 +14,12 @@ export const SearchResults = ({ params }) => {
    const externalRef = useRef();
    const { isNearScreen } = useNearScreen({ externalRef: loading ? null : externalRef, once: false });
 
-   //    const handleNextPage = () => setPage((prevPage) => prevPage + 1);
-
-   //    const handleNextPage = () => console.log('next page');
-
    const debounceHandleNextPage = useCallback(
-      debounce(() => console.log('next page'), 1000),
-      []
+      debounce(() => setPage((prevPage) => prevPage + 1), 200),
+      [setPage]
    );
 
    useEffect(() => {
-      console.log(isNearScreen);
       if (isNearScreen) debounceHandleNextPage();
    }, [debounceHandleNextPage, isNearScreen]);
 

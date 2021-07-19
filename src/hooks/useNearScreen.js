@@ -5,10 +5,9 @@ export const useNearScreen = ({ distance = '100px', externalRef, once = true } =
    const fromRef = useRef();
 
    useEffect(() => {
-      let observer = '';
+      let observer;
 
-      const fromElement = externalRef ? externalRef.current : fromRef.current;
-      if (!fromElement) return;
+      const element = externalRef ? externalRef.current : fromRef.current;
 
       const onChange = (entries, observer) => {
          const el = entries[0];
@@ -26,7 +25,7 @@ export const useNearScreen = ({ distance = '100px', externalRef, once = true } =
             rootMargin: distance,
          });
 
-         observer.observe(fromElement);
+         if (element) observer.observe(element);
       });
 
       return () => observer && observer.disconnect(); //cuando el componente se deje de utilizar no se muestre y limpie el elemento cuando no esta disponible
