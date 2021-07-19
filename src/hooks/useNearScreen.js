@@ -1,18 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useNearScreen = ({ distance = '100px' } = {}) => {
+export const useNearScreen = ({ distance = '100px', externalRef, once = true } = {}) => {
    const [isNearScreen, setShow] = useState(false);
    const fromRef = useRef();
 
    useEffect(() => {
       let observer = '';
 
+      const fromElement = externalRef ? externalRef.current : fromRef.current;
+      if (!fromElement) return;
+
       const onChange = (entries, observer) => {
          const el = entries[0];
 
          if (el.isIntersecting) {
             setShow(true);
-            observer.disconnect(); //una ves que se hace la interseccion se desconecta
+            once && observer.disconnect(); //una ves que se hace la interseccion se desconecta
+         } else {
+            !once && setShow(false);
          }
       };
 
@@ -21,7 +26,7 @@ export const useNearScreen = ({ distance = '100px' } = {}) => {
             rootMargin: distance,
          });
 
-         observer.observe(fromRef.current);
+         observer.observe(fromElement);
       });
 
       return () => observer && observer.disconnect(); //cuando el componente se deje de utilizar no se muestre y limpie el elemento cuando no esta disponible
